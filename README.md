@@ -1,17 +1,10 @@
 # LabCorpAssessment
- * Introduction
- * Requirements
- * Installation
- * Configuration
- * Maintainers
-
-
 
 LabcorpAssessment
-General Information: This project is developed for Labcorp QA Automation Coding Test
+* General Information: This project is developed for Labcorp QA Automation Coding Test
 One Feature File and a correspanding Step Definiton Java Class was created for API assessment
 One Feature File and a correspanding Step Definiton Java Class was created for UI assessment
-Techonology:
+* Techonology:
 Java 1.8
 Rest Assured:4.1.1
 junit:4.12
