@@ -34,22 +34,24 @@ public class MyStepdefsUI {
 
     @When("the user clicks Career Links")
     public void the_user_clicks_Career_Links() {
-        String careersXpath= "//div[@class='footer-links']//a[contains(@href,'careers')]";
-        String acceptCookiesxPath= "//*[@title='Accept Cookies Button']";
+        By careersXpath= By.xpath("//div[@class='footer-links']//a[contains(@href,'careers')]");
+        By acceptCookiesxPath= By.xpath("//*[@title='Accept Cookies Button']");
         webDriverWait = new WebDriverWait(driver,30);
 
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(acceptCookiesxPath)));
-        driver.findElement(By.xpath(acceptCookiesxPath)).click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(acceptCookiesxPath));
+        driver.findElement(acceptCookiesxPath).click();
 
 
-        webDriverWait.until(ExpectedConditions.elementToBeClickable(By.xpath(careersXpath)));
-        driver.findElement(By.xpath(careersXpath)).click();
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(careersXpath));
+        driver.findElement(careersXpath).click();
     }
 
     @When("the user searches for {string}")
     public void the_user_searches_for(String string){
         String keyWordSearchXpath= "//input[contains(@id,'search-keyword-')]";
+        String cityStateZipxPath = "//input[contains(@class,'search-location')]";
         String submitXpath = "//button[contains(@id,'search-submit-')]";
+
 
         //swithc to the new windows
         Set<String> set = driver.getWindowHandles();
@@ -61,6 +63,9 @@ public class MyStepdefsUI {
         }
 
         driver.findElement(By.xpath(keyWordSearchXpath)).sendKeys(string);
+
+        driver. findElement(By.xpath(cityStateZipxPath)).clear();
+
         driver.findElement(By.xpath(submitXpath)).click();
     }
 

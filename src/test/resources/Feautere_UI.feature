@@ -5,5 +5,5 @@ Feature: LabCorp Assessment Tests_UI
     When the user clicks Career Links
     And the user searches for 'QA Test Automation Developer'
     Then the user validates the following information
-      | Job Title            | Job Location         | Job Id   |
-      | Specimen Accessioner | Chesapeake, Virginia | 21-90282 |
+      | Job Title                  | Job Location           | Job Id   |
+      | Senior QA Software Analyst | Durham, North Carolina | 21-96362 |

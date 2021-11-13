@@ -3,6 +3,7 @@ package StepDefs;
 import cucumber.api.java.en.Given;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
+import org.junit.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +15,12 @@ import static io.restassured.RestAssured.given;
 public class MyStepdefsAPI {
     @Given("the user creates a POST request with below info and verifies the response")
     public void the_user_creates_a_POST_request_with_below_info_and_verifies_the_response(io.cucumber.datatable.DataTable dataTable) throws Throwable{
+
+        // Store the actual values in the maps, ListofMaps DS
         List<Map<String,String>> maps = dataTable.asMaps();
 
+
+        //Define a jSONobject to be used as POST body and assign the values
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("createdAt",maps.get(0).get("createdAt"));
         jsonObject.put("employee_firstname",maps.get(0).get("employee_firstname"));
@@ -29,22 +34,32 @@ public class MyStepdefsAPI {
         jsonObject.put("employee_onleave",maps.get(0).get("employee_onleave"));
         jsonObject.put("tech_stack",new ArrayList<>());
         jsonObject.put("project",new ArrayList<>());
-        System.out.println(jsonObject);
+        //System.out.println(jsonObject);
 
 
-        baseURI = "https://6143a99bc5b553001717d06a.mockapi.io/testapi/v1/Users/";
+        baseURI = "https://6143a99bc5b553001717d06a.mockapi.io/testapi/v1";
+
         Response response = given().
                 body(jsonObject.toJSONString()).
-                when().post();
-        //Assert.assertEquals(201,response.statusCode());
-        System.out.println(response.statusCode());
+                when().post("/Users/");
+        Assert.assertEquals(201,response.statusCode());
 
+        // Store the values in map, as keys and values
         Map<String,Object> map = response.as(Map.class);
+
+        /*
+        The following displays the expected values as well as the retrieved actual values from the end point
+        after the POST Request is completed.;
+        */
 
         for(Object obj: jsonObject.keySet()){
             System.out.println(jsonObject.get(obj)+" : "+map.get(obj));
         }
-
+/*
+The following step could validate all values retrieved from the end point
+after the POST Request is completed. Assert.assertEquals(expected, actual);
+Looks like POST request is hit the Data table which has an auto increment for values
+ */
 //        for(Object obj: jsonObject.keySet()){
 //            Assert.assertEquals(jsonObject.get(obj),map.get(obj));
 //        }
